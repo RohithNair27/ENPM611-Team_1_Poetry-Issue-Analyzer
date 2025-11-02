@@ -105,7 +105,7 @@ Compares counts of open vs closed issues per category. Categories with many open
 Ranks issues by Activity Score. Each line represents one issue; longer lines indicate higher normalized activity (more events across more types). Use this to prioritize reviews, decisions, or fixes.
 
 ### CLI extras – “Other” label breakdown
-When “Other” is large, the CLI prints the top raw labels and families (e.g., status/*, area/*, kind/*) found in that bucket. Use this to refine your label mapping and shrink “Other”.
+When “Other” is large, the CLI prints the top raw labels and families (e.g.,``` status/*```, ```area/*```, ```kind/*```) found in that bucket. Use this to refine your label mapping and shrink “Other”.
 
 #### How the Activity Score is calculated (high level)
 
