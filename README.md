@@ -53,7 +53,7 @@ Sums normalized counts of events (e.g., opened, commented, labeled, closed, refe
 ### Category Share (%):
 A pie chart showing what % of issues belong to Bug, Feature, Docs, Dependency, Infra, Other in the selected period.
 
-###Open vs Closed by Category:
+### Open vs Closed by Category:
 A grouped bar chart showing how many issues are open vs closed for each category.
 
 #### Typical insights
@@ -99,7 +99,7 @@ Shows the percentage of issues in each category for the selected period. A skew 
 
 Compares counts of open vs closed issues per category. Categories with many open and few closed bars may require staffing or scope review.
 
-### Figure 3 – Top-N Most Active Issues (Lollipop)
+### Figure 3 – Top-N Most Active Issues (Lollipop Plot)
 ![Top-N Most Active Issues](images/feature1/Top-NMostActiveIssues.png)
 
 Ranks issues by Activity Score. Each line represents one issue; longer lines indicate higher normalized activity (more events across more types). Use this to prioritize reviews, decisions, or fixes.
