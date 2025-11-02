@@ -111,9 +111,9 @@ When “Other” is large, the CLI prints the top raw labels and families (e.g.,
 
 For each event type:
 
-1.Count events per issue during the selected period.
-2.Normalize that column to 0–1 across issues.
-3.Sum all normalized event columns → Activity Score.
+1. Count events per issue during the selected period.
+2. Normalize that column to 0–1 across issues.
+3. Sum all normalized event columns → Activity Score.
 
 This balances different event types and highlights issues with broad engagement, not just a single spiky metric.
 
