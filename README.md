@@ -188,6 +188,26 @@ This will automatically analyze multiple timeframes without interactive prompts.
 - A high volume of multi-area issues in recent months might suggest increasing system complexity
 - Closed multi-area issues can provide examples of successful cross-team collaboration patterns
 
+## Feature 3 - Top User Activity
+This feature analyzes contributor engagement within the Poetry GitHub repository by measuring how active each user is in creating, closing, and commenting on issues.
+The goal is to highlight the most active community members and visualize their contribution levels using a ranked bar chart.
+
+Insights:
+1. Helps identify the top contributors who are most engaged in project discussions and maintenance.
+2. Provides visibility into user participation across multiple actions — opening, closing, and commenting on issues.
+3. Enables maintainers to understand who drives activity within the repository and recognize community involvement.
+
+### Run feature 3
+```
+python3 run.py --feature3
+```
+#### Sample output
+### Figure - Top 5 Active Contributors
+![Top 5 Active Contributors](images/feature3/Top5Contributors.png)
+
+Showing top 5 contributors based on if user created, closed or commented on issues
+
+
 ## Feature 4 - Resolution Time Analyser
 
 This feature analyzes how specific GitHub issue events such as labeling and assignment influence the overall resolution time of issues.
