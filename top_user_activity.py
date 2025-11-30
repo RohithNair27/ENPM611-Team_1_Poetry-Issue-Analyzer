@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import List, Tuple, Dict
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -31,7 +32,9 @@ class TopUserActivityAnalyser:
 
     def run(self,
             top_n: int = 5,
-            credit_creator_when_closed_unknown: bool = True) -> None:
+            credit_creator_when_closed_unknown: bool = True,
+            output_dir: str | Path = "images/feature3",
+            show_plot: bool = True) -> None:
         """
         Entry point. Computes activity, prints the top list, and plots the bar chart.
         """
@@ -54,7 +57,13 @@ class TopUserActivityAnalyser:
                   f"commented={int(row['commented'])})")
 
         # Visual
-        self._plot_top_users(top_df, title=f"Top {len(top_df)} Active Contributors")
+        output_path = self._build_output_path(output_dir, top_df, top_n)
+        self._plot_top_users(
+            top_df,
+            title=f"Top {len(top_df)} Active Contributors",
+            output_path=output_path,
+            show_plot=show_plot,
+        )
 
     
     def _compute_activity_dataframe(
@@ -112,7 +121,13 @@ class TopUserActivityAnalyser:
 
         return pd.DataFrame(rows)
 
-    def _plot_top_users(self, top_df: pd.DataFrame, title: str) -> None:
+    def _plot_top_users(
+        self,
+        top_df: pd.DataFrame,
+        title: str,
+        output_path: Path | None = None,
+        show_plot: bool = True,
+    ) -> None:
         """
         Bar chart without badges. Shows total score and a compact (o/c/cm) breakdown above each bar.
         """
@@ -147,7 +162,24 @@ class TopUserActivityAnalyser:
             )
 
         plt.tight_layout()
-        plt.show()
+        if output_path is not None:
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            plt.savefig(output_path, bbox_inches="tight")
+            print(f"Saved chart to {output_path}")
+        if show_plot:
+            plt.show()
+        plt.close()
+
+    def _build_output_path(self, output_dir: str | Path, top_df: pd.DataFrame, top_n: int) -> Path:
+        """Construct output path for the chart and ensure directory exists."""
+        output_dir = Path(output_dir)
+        if not output_dir.is_absolute():
+            output_dir = Path(__file__).resolve().parent / output_dir
+
+        output_dir.mkdir(parents=True, exist_ok=True)
+        num_entries = len(top_df) if not top_df.empty else top_n
+        filename = f"Top{num_entries}Contributors.png"
+        return output_dir / filename
 
 
 # -- Helper methods to tolerate schema differences --
