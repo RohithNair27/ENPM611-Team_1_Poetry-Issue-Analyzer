@@ -205,9 +205,12 @@ class TopUserActivityAnalyser:
 
     @staticmethod
     def _event_type(ev: Event) -> str:
-        et = getattr(ev, "event_type", None) or getattr(ev, "type", None)
+        # event_type may come as 'closed'/'commented' or via 'event'
+        et = (getattr(ev, "event_type", None)
+              or getattr(ev, "type", None)
+              or getattr(ev, "event", None))
         if not et and isinstance(ev, dict):
-            et = ev.get("event_type") or ev.get("type")
+            et = ev.get("event_type") or ev.get("type") or ev.get("event")
         return (et or "").lower()
 
     @staticmethod
@@ -216,6 +219,9 @@ class TopUserActivityAnalyser:
         actor = getattr(ev, "actor_login", None)
         if actor:
             return actor
+        author = getattr(ev, "author", None)
+        if author:
+            return author
         # nested actor object
         act = getattr(ev, "actor", None) or {}
         if hasattr(act, "login"):
